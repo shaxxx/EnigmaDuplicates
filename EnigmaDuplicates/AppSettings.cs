@@ -11,7 +11,6 @@ using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 using System.Xml.Serialization;
-using Krkadoni.EnigmaSettings;
 using log4net;
 
 namespace Krkadoni.EnigmaDuplicates
@@ -113,7 +112,7 @@ namespace Krkadoni.EnigmaDuplicates
         }
 
         [XmlIgnore]
-        public const string ReleaseName = "NoviSF";
+        public const string ReleaseName = "SatelitskiForum";
 
         [XmlIgnore]
         public const string BarTekst = "http://www.krkadoni.com";

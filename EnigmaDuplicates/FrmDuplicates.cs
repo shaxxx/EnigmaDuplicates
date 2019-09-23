@@ -11,6 +11,7 @@ using Krkadoni.EnigmaSettings;
 using Krkadoni.EnigmaSettings.Interfaces;
 using Krkadoni.EnigmaDuplicates.Properties;
 using Settings = Krkadoni.EnigmaSettings.Settings;
+using Resources = Krkadoni.EnigmaDuplicates.Properties.Resources;
 
 namespace Krkadoni.EnigmaDuplicates
 {
@@ -194,8 +195,8 @@ namespace Krkadoni.EnigmaDuplicates
                 fb.Description = Resources.Choose_folder;
                 if (fb.ShowDialog() == DialogResult.OK)
                 {
-                    var settingsIO = new SettingsIO();
-                    settingsIO.SaveAsync(new DirectoryInfo(fb.SelectedPath), _settings, ar => ShowInfoDialog(Resources.Settings_saved_sucessfully_));
+                    var settingsIO = new SettingsIO(new InstanceFactory());
+                    settingsIO.SaveAsync(new DirectoryInfo(fb.SelectedPath).FullName, _settings, ar => ShowInfoDialog(Resources.Settings_saved_sucessfully_));
                 }
             }
         }
@@ -415,8 +416,8 @@ namespace Krkadoni.EnigmaDuplicates
             UpdateControlsEnabled();
             SetProgressBarVisible(true);
             SetStatus(Resources.STATUS_READING_SERVICES);
-            var settingsIO = new SettingsIO();
-            settingsIO.LoadAsync(new FileInfo(fileName), OpenSettingsFileCallback);
+            var settingsIO = new SettingsIO(new InstanceFactory());
+            settingsIO.LoadAsync(new FileInfo(fileName).FullName, OpenSettingsFileCallback);
             AppSettings.Log.DebugFormat("OpenSettingsFileAsync finished");
         }
 
@@ -430,7 +431,7 @@ namespace Krkadoni.EnigmaDuplicates
 
             // Retrieve the delegate.
             var result = (AsyncResult)ar;
-            var caller = (Func<FileInfo, ISettings>)result.AsyncDelegate;
+            var caller = (Func<String, ISettings>)result.AsyncDelegate;
 
             try
             {

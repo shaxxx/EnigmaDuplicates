@@ -34,7 +34,7 @@ using log4net.Config;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("0.001")]
-[assembly: AssemblyFileVersion("0.001")]
+[assembly: AssemblyVersion("0.002")]
+[assembly: AssemblyFileVersion("0.002")]
 [assembly: XmlConfigurator(ConfigFile = "EnigmaDuplicates.log4net", Watch = true)]
 [assembly: NeutralResourcesLanguage("en")]
